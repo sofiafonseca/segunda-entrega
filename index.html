@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="icon" type="image/png" href= "img/favicon.png" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Industria Vitivinícola en Chile</title>
+
+    <!-- COMMON TAGS -->
+<meta charset="utf-8">
+<title>Industria Vinícola en Chile</title>
+<!-- Search Engine -->
+<meta name="description" content="En esta pagina se encuentran datos sobre la exportación e importación en Chile">
+<!-- Schema.org for Google -->
+<meta itemprop="name" content="Industria Vinícola en Chile">
+<meta itemprop="description" content="En esta pagina se encuentran datos sobre la exportación e importación en Chile">
+<!-- Open Graph general (Facebook, Pinterest & Google+) -->
+<meta name="og:title" content="Industria Vinícola en Chile">
+<meta name="og:description" content="En esta pagina se encuentran datos sobre la exportación e importación en Chile">
+<meta name="og:type" content="website">
+
+    <!-- Vamos a buscar el CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--Vamos a buscar el CSS de Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Vamos por nuestro CSS, basado en https://startbootstrap.com/template-overviews/grayscale/ -->
+    <link href="style.css" rel="stylesheet">
+    <!-- Aquí vamos por el estilo y script del mapa-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><span class="titular"></span></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#dataviz">Visualizaciones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Este encabezado viene de https://startbootstrap.com/snippets/video-header/ -->
+    <header>
+        <div class="overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <!--Favor revisar https://www.w3schools.com/html/html5_video.asp-->
+            <source src="video/vino.mp4" type="video/mp4">
+        </video>
+        <div class="container h-100">
+            <div class="d-flex text-center h-100">
+                <div class="my-auto w-100 text-white">
+                    <h1 class="display-3 titular"></h1>
+                    <h2>SU EXPORTACIÓN E IMPORTACIÓN</h2>
+                    <p class="pt-3"><a href="#about"><i class="fas fa-3x fa-arrow-alt-circle-down"></i></a></p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- About Section -->
+    <section id="about" class="about-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-white mb-4">Comercializacion del vino chileno.</h2>
+                    <p class="text-white-50">En 2016, Vino fue el 5to producto más exportado por Chile, de un total de 1224 categorías. Representó el 3,3 % de las exportaciones a nivel nacional, siendo Region Metropolitana Santiago la principal región exportadora, abarcando el 79,9 % del total. Por otra parte, las importaciones de Vino fueron de $ 7,26 millones, siendo Argentina la principal fuente de las importaciones, alcanzando un 46,5 %, seguido de Francia y España, con un 21,0 % y 14,2 % respectivamente..
+                </div>
+            </div>
+            <img src="media/ipad.png" class="img-fluid" alt="">
+        </div>
+    </section>
+
+    <!-- dataviz Section -->
+    <section id="dataviz" class="dataviz-section bg-light">
+        <div class="container">
+
+            <!-- MAPA -->
+            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                <div class="col-xl-8 col-lg-7">
+                    <div id="leaflet"></div>
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4>Mercado Internacional</h4>
+                        <p class="text-black-50 mb-0">Chile exporta sus vinos a una gran variedad de paises, alguno de ellos son China, Suecia y Colombia. </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRIMER GRÁFICO -->
+            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <div class="col-lg-6">
+                    <svg id="chart-1"></svg>
+                </div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-white">EXPORTACIONES POR DESTINO</h4>
+                                <p class="mb-0 text-white-50">Actualmente Chile es el primer exportador de vinos del nuevo mundo y cuarto exportador mundial de vinos, siendo superado sólo por países europeos de vasta trayectoria en materias vitivinícolas, como Francia, España e Italia. En este gráfico se puede ver una estimación de las ganancias en mercado. </p>
+                                <hr class="d-none d-lg-block mb-0 ml-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEGUNDO GRÁFICO -->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6">
+                    <svg id="chart-2"></svg>
+                </div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-white">IMPORTACIONES POR ORIGEN</h4>
+                                <p class="mb-0 text-white-50">Si bien Chile es un lider de exportación, también es un punto trascendente en el mercado de las importaciones, Donde Argentina toma un papel importante, ya que toma un 15% del consumo en Chile.  </p>
+                                <hr class="d-none d-lg-block mb-0 mr-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black small text-center text-white-50">
+        <div class="container">
+            <p><span class="titular"></span> fue desarrollado por Sofía Fonseca Duhalde para Multimedia II</p>
+            <p>Segundo semestre, 2018 · Diseño Gráfico</p>
+            <p>Universidad de Chile</p>
+            <p><a href="#page-top"><i class="fas fa-arrow-alt-circle-up"></i></a></p>
+        </div>
+    </footer>
+
+    <!-- Vamos a buscar algo de JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    <script>
+        (function($) {
+            "use strict"; // Start of use strict
+
+            $(".titular").text("INDUSTRIA VITIVINÍCOLA EN CHILE");
+        })(jQuery); // End of use strict
+    </script>
+
+
+    <script src="js/theme.js"></script>
+
+    <!--visualizaciones-->
+
+    <script>
+        var mymap = L.map('leaflet').setView([31.8468471,-9.686701], 1);
+        
+                var georeferencias = [
+        {
+            lugar: "China",
+            coordenadas: [35.0000000, 105.0000000],
+            numero:4,
+        }, {
+            lugar: "Estados Unidos",
+            coordenadas: [38.0000000,-97.0000000],
+            numero:4,
+        }, {
+            lugar: "Reino Unido",
+            coordenadas: [54.0000000,-2.0000000],
+            numero:4,
+        }, {
+            lugar: "Japón",
+            coordenadas: [36.0000000,138.0000000],
+            numero:4,
+        }, {
+            lugar: "Brasil",
+            coordenadas: [ -10.0000000,-55.0000000],
+            numero:4,
+        }, {
+            lugar: "Holanda",
+            coordenadas: [52.5000000,5.7500000],
+            numero:4,
+        }, {
+            lugar: "Canadá",
+            coordenadas: [56.0000000,-105.50000000],
+            numero:4,
+        }, {
+            lugar: "Alemania",
+            coordenadas: [51.0000000,9.0000000],
+            numero:4,
+        }, {
+            lugar: "Dinamarca",
+            coordenadas: [56.0000000,10.0000000],
+            numero:4,
+        }, {
+            lugar: "Irlanda",
+            coordenadas: [53.0000000,-8.0000000],
+            numero:4,
+        }, {
+            lugar: "México",
+            coordenadas: [23.0000000, -102.0000000],
+            numero:4,
+        }, {
+            lugar: "Corea del Sur",
+            coordenadas: [37.0000000,127.5000000],
+            numero:4,
+        }, {
+            lugar: "Suecia",
+            coordenadas: [62.0000000,15.0000000],
+            numero:4,
+        }, {
+            lugar: "Bélgica",
+            coordenadas: [50.8333000,4.0000000],
+            numero:4,
+        }, {
+            lugar: "Francia",
+            coordenadas: [46.0000000,2.0000000],
+            numero:4,
+        }, {
+            lugar: "Colombia",
+            coordenadas: [4.0000000, -72.0000000],
+            numero:4,
+        }
+                    
+        ];
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            id: 'mapbox.streets'
+        }).addTo(mymap);
+
+            
+           for (var x = 0; x < georeferencias.length; x++) {
+            lat = georeferencias[x].coordenadas[0];
+            lon = georeferencias[x].coordenadas[1];
+               
+        L.marker([lat, lon]).addTo(mymap).bindPopup(georeferencias[x].lugar);
+            console.log(lat + "," + lon);
+        }
+    </script>
+
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!--gráfico 1-->
+
+    <script>
+        var exportacion = [
+        {pais: "Reino Unido", valor: 191 },
+        {pais: "Holanda", valor: 104 },
+        {pais: "Estados Unidos", valor:246},
+        {pais:"Brasil", valor:123},
+        {pais:"China", valor:251},
+        {pais:"Japón", valor:184},
+        {pais:"Canadá", valor:96},
+        {pais:"Alemania", valor:55},
+        {pais:"Dinamarca", valor:52}
+        ];
+        var coso = d3.select("#chart-1").attr("width", "100%").attr("height", "420").style("background", "RGBA( 189, 114, 141, 1.00)");
+        coso.selectAll("rect").data(exportacion).enter().append("rect").attr("x",40).attr("y", function(d, i) { return (i + 1) * 40; }).attr("width", function(d) { return d.valor*1 }).attr("height",30).attr("fill","RGBA(113, 25, 57, 1.00)")
+         coso.selectAll("text").data(exportacion).enter().append("text").text(function(d) {return (d.pais + " (" + d.valor + " US m)")}).attr("text-anchor", "start").attr("x", function(d, i) { return (d.valor*1)+50 }).attr("y", function(d, i) { return ((i + 1) * 40)+20 }).attr("font-family", "Montserrat").attr("font-size", "12px").attr("fill", "white"); 
+    </script>
+    
+    <!--gráfico 2-->
+
+   
+    <script>
+       var data = [
+      {name: 'Argentina', valor: 6, color:"#711939", cantidad: "US 3 millones"},
+      {name: 'Francia', valor: 5, color:"#711939", cantidad: "US 2 millones"},
+    {name: 'España', valor: 4, color:"#711939", cantidad: "US 1 millon"},
+      {name: 'Italia', valor: 3, color:"#711939", cantidad: "US 852 mil"}
+     
+    ]    
+    var esto = d3.select("#chart-2").attr("width", "100%").attr("height", "400").style("background", "#BD728D");
+    var g = esto.selectAll("g")
+      .data(data)
+      .enter()
+      .append("g")  
+    g.append("circle")
+      .attr("cx", function(d, i) { return (125 * (i++)+100); })
+      .attr("cy", function(d) { return 200; })
+      .attr("r", function(d) { return d.valor*10; })
+      .attr("fill",function(d){ return d.color; })
+        
+    g.append("text")
+      .attr("x", function(d, i) { return (125 * (i++)+100); })
+      .attr("y", function(d, i) { return 300; })
+      .attr("fill","white")
+      .attr('text-anchor','middle')
+      .text(function(d) { return d.name; })
+        
+    g.append("text")
+      .attr("x", function(d, i) { return (125 * (i++)+100); })
+      .attr("y", function(d, i) { return 200; })
+      .attr("fill","white")
+      .attr('text-anchor','middle')
+      .attr('font-size', '9')
+      .text(function(d) { return d.cantidad; })
+    </script>
+    
+
+</body>
+
+</html>
